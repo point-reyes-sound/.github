@@ -60,13 +60,15 @@ If you utilize Point Reyes Sound datasets, kinetic solvers, or benchmark curves 
 
 ```bibtex
 @article{chakraborty2026qbescf,
-  title={Entropic Regularization of Mean-Field Singularities via Quantum Kinetic Transport},
+  title={Quantum Boltzmann Equation Self-Consistent-Field for the Entropic Regularization of Mean-Field Singularities},
   author={Chakraborty, Romit},
   journal={arXiv preprint arXiv:2608.14979},
   year={2026},
   eprint={2608.14979},
   archivePrefix={arXiv},
-  primaryClass={quant-ph}
+  primaryClass={physics.chem-ph},
+  doi={10.48550/arXiv.2608.14979},
+  url={https://arxiv.org/abs/2608.14979}
 }
 ```
 
