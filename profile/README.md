@@ -11,7 +11,7 @@
 
 ---
 
-### [📄 Read Preprint](https://arxiv.org/abs/2608.14979) • [🔬 Interactive 3D Simulation](https://pointreyessound.com/interactive) • [📊 Open Benchmarks & Data](https://github.com/point-reyes-sound/p1_qbescf) • [🌐 Website](https://pointreyessound.com)
+### [📄 Read Preprint](https://arxiv.org/abs/2608.14979) • [🔬 Interactive ](https://pointreyessound.com/interactive) • [📊 Open Benchmarks & Data](https://github.com/point-reyes-sound/p1_qbescf) • [🌐 Website](https://pointreyessound.com)
 
 ---
 
