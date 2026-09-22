@@ -6,7 +6,7 @@
 
 [![Preprint](https://img.shields.io/badge/arXiv-2608.14979-B31B1B.svg?style=flat-square)](https://arxiv.org/abs/2608.14979)
 [![Website](https://img.shields.io/badge/Platform-pointreyessound.com-0284c7.svg?style=flat-square)](https://pointreyessound.com)
-[![Interactive 3D](https://img.shields.io/badge/Interactive-3D_Phase--Space-0d9488.svg?style=flat-square)](https://pointreyessound.com/interactive)
+[![Interactive](https://img.shields.io/badge/Interactive-3D_Phase--Space-0d9488.svg?style=flat-square)](https://pointreyessound.com/interactive)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
 ---
