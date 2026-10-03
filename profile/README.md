@@ -1,62 +1,84 @@
 <div align="center">
 
-# Point Reyes Sound, Inc.
+<img src="https://raw.githubusercontent.com/point-reyes-sound/.github/main/profile/assets/prs_org_banner.svg" alt="Point Reyes Sound, Inc." width="100%" />
 
-### Continuous phase-space kinetics for strongly correlated electrons.
+<br />
 
-[![Preprint](https://img.shields.io/badge/arXiv-2608.14979-B31B1B.svg?style=flat-square)](https://arxiv.org/abs/2608.14979)
-[![Website](https://img.shields.io/badge/Platform-pointreyessound.com-0284c7.svg?style=flat-square)](https://pointreyessound.com)
-[![Interactive](https://img.shields.io/badge/Interactive-3D_Phase--Space-0d9488.svg?style=flat-square)](https://pointreyessound.com/interactive)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
+# POINT REYES SOUND
+
+### Continuous Phase-Space Kinetics for Strongly Correlated Electrons
+
+[![Preprint: arXiv:2608.14979](https://img.shields.io/badge/Preprint-arXiv%3A2608.14979-B31B1B.svg?style=flat-square)](https://arxiv.org/abs/2608.14979)
+[![Platform: pointreyessound.com](https://img.shields.io/badge/Platform-pointreyessound.com-0284c7.svg?style=flat-square)](https://pointreyessound.com)
+[![Interactive Engine: 3D Simulator](https://img.shields.io/badge/Interactive-Quantum%20Gas%203D-0d9488.svg?style=flat-square)](https://pointreyessound.com/interactive)
+[![Open Data: p1_qbescf](https://img.shields.io/badge/Data%20Suite-CC%20BY%204.0-334155.svg?style=flat-square)](https://github.com/point-reyes-sound/p1_qbescf)
 
 ---
 
-### [📄 Read Preprint](https://arxiv.org/abs/2608.14979) • [🔬 Interactive ](https://pointreyessound.com/interactive) • [📊 Open Benchmarks & Data](https://github.com/point-reyes-sound/p1_qbescf) • [🌐 Website](https://pointreyessound.com)
+### [📄 Research Preprint](https://arxiv.org/abs/2608.14979) • [🔬 3D Quantum Gas Simulator](https://pointreyessound.com/interactive) • [📊 Open Numerical Benchmarks](https://github.com/point-reyes-sound/p1_qbescf) • [🌐 Company Platform](https://pointreyessound.com)
 
 ---
 
 </div>
 
-## Discovery Without Deference
+## Overview
 
-**Point Reyes Sound** is a theoretical and computational research pod advancing non-equilibrium kinetic transport methods for quantum chemistry and electronic structure.
+**Point Reyes Sound, Inc.** is a theoretical research pod and deep-tech software laboratory developing non-equilibrium phase-space kinetic transport methods for quantum chemistry, materials discovery, and electronic structure.
 
-Where traditional mean-field electronic structure encounters factorial active-space bottlenecks in multireference systems, we propagate the one-electron reduced density matrix ($\gamma$) through the **Quantum Boltzmann Equation** with a Bhatnagar-Gross-Krook (BGK) collision operator:
+In strongly correlated systems—such as transition metal catalytic complexes, singlet fission materials, and battery electrode interfaces—conventional electronic structure methods stall:
+1. **Mean-Field Solvers (HF, standard DFT)** suffer catastrophic variational collapse, unphysical Coulson-Fischer symmetry breaking, and divergence at conical intersections.
+2. **Multireference Methods (CASSCF, CASPT2, FCI, DMRG)** require active-space selection that scales factorially $\mathcal{O}(N!)$ or exponentially $\mathcal{O}(e^N)$, restricting rigorous quantum simulations to small molecular fragments.
+
+Point Reyes Sound solves this bottleneck through **Quantum Boltzmann Equation Self-Consistent Field (QBE-SCF)** theory: propagating the one-electron reduced density matrix ($\gamma$) in continuous phase space via non-equilibrium Bhatnagar-Gross-Krook (BGK) collision relaxation, achieving **deterministic $\mathcal{O}(N^3)$ polynomial scaling** while rigorously preserving state symmetry and regularizing topological singularities.
+
+---
+
+## Method & System Profile
+
+| Specification | Conventional Electronic Structure (HF / CASSCF / DMRG) | Point Reyes Sound (QBE-SCF / Q-BOLTZ) |
+| :--- | :--- | :--- |
+| **Mathematical Formulation** | Static iterative diagonalization of non-linear Fock operator ($F C = S C \epsilon$). | Time-dependent propagation of the 1-RDM via the Quantum Boltzmann Equation with BGK collision relaxation. |
+| **Computational Complexity** | Polynomial $\mathcal{O}(N^3)$ for single-reference (broken symmetry); Factorial $\mathcal{O}(N!)$ for multireference active spaces. | **Rigorous polynomial $\mathcal{O}(N^3)$** throughout bond breaking, conical intersections, and transition states. |
+| **Symmetry Preservation** | Forces artificial symmetry breaking (spin contamination) to reach correct dissociation energies. | **Preserves total spin and spatial symmetry**; maintains pure quantum states throughout reaction coordinates. |
+| **Singularity Handling** | Fock operator diverges or becomes ill-conditioned near non-adiabatic seams and degeneracies. | **Entropic regularization** via Von Neumann entropy maximization smoothly bridges topological singularities. |
+| **Phase-Space Diagnostic** | Pure coordinate-space orbitals $\psi_i(\mathbf{r})$ with obscure momentum correlation. | **Direct continuous Wigner tomography** $W(z, p_z; R)$, visualizing delocalization and non-equilibrium electron transport. |
+
+---
+
+## The QBE-SCF Governing Equation
+
+The core continuous phase-space transport engine evolves the one-electron reduced density matrix $\gamma(t)$ according to:
 
 $$\frac{\partial \gamma}{\partial t} + \frac{i}{\hbar}[F(\gamma), \gamma] = -\frac{1}{\tau}\left(\gamma - \gamma^{(0)}[S_{\text{vN}}]\right)$$
 
-By introducing finite-time kinetic relaxation and entropic regularization, the solver circumvents unphysical symmetry breaking, resolves topological singularities (conical intersections and Coulson-Fischer points), and accurately simulates **"long electrons"**—delocalized, entangled charge carriers that govern catalysis, transition states, wide-bandgap semiconductors, and battery interfaces.
+* Where $F(\gamma)$ is the self-consistent Fockian constructed from the instantaneous one-particle density matrix.
+* $\gamma^{(0)}[S_{\text{vN}}]$ is the target reference state obtained by maximizing the Von Neumann configuration entropy $S_{\text{vN}} = -\text{Tr}(\gamma \ln \gamma)$ subject to particle-number and trace constraints.
+* $\tau$ is the characteristic kinetic relaxation time governing the non-equilibrium dissipative flow toward physical equilibrium.
 
 ---
 
-## Core Research Pillars
+## Core Repositories & Data Suites
 
-| Pillar | Theory & Methodology | Key Breakthrough |
-| :--- | :--- | :--- |
-| **01 · Kinetic Transport & QBE-SCF** | Continuous $O(N^3)$ phase-space relaxation replacing static iterative diagonalization. | Eliminates variational collapse and symmetry-breaking dilemmas without factorial multireference active spaces. |
-| **02 · Topological Regularization** | Von Neumann configuration entropy maximization during bond elongation. | Smoothly regularizes mean-field singularities at diradical dissociation limits and conical intersections. |
-| **03 · Phase-Space Wigner Tomography** | Continuous joint position-momentum representations $W(z, p_z; R)$. | Directly visualizes non-equilibrium quantum transport and coherent electron delocalization during dissociation. |
+* ### [`point-reyes-sound/point-reyes-sound`](https://github.com/point-reyes-sound/point-reyes-sound)
+  *The Core Research Platform & 3D Interactive Reaction Chamber*
+  * High-performance React + Three.js + WebGL interactive 3D simulation of molecular dissociation and non-equilibrium transport.
+  * Real-time phase-locked acoustic sonification engine mapping molecular vibrational-kinetic states to harmonic audio.
+  * Deployed live at [pointreyessound.com](https://pointreyessound.com).
 
----
-
-## Public Repositories & Data Suites
-
-* **[`p1_qbescf`](https://github.com/point-reyes-sound/p1_qbescf)** — *Open Numerical Datasets & Benchmark Suites*  
-  Full reproduction datasets and staging scripts for arXiv:2608.14979:
-  - $\text{H}_2$ Coulson-Fischer potential energy dissociation curves.
-  - $\text{H}_3$ symmetric stretch along $D_{3h}$ geometry and natural orbital configuration entropy.
-  - $\text{H}_4$ rectangular scan and non-adiabatic Berry phase loops.
-  - $\text{BeH}_2$ conical intersection entropic regularization.
-  - Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-
-* **[`point-reyes-sound`](https://github.com/point-reyes-sound/point-reyes-sound)** — *Web Application & 3D Interactive Engine*  
-  Source code for the research pod portal and interactive WebGL / Three.js phase-space reaction engine deployed at [pointreyessound.com](https://pointreyessound.com).
+* ### [`point-reyes-sound/p1_qbescf`](https://github.com/point-reyes-sound/p1_qbescf)
+  *Open Numerical Data Suite & Validation Benchmarks for arXiv:2608.14979*
+  * Raw potential energy curves, dissociation trajectories, and natural orbital occupancy data:
+    * $\text{H}_2$ Coulson-Fischer dissociation curve without unphysical spin symmetry breaking.
+    * $\text{H}_3$ $D_{3h}$ symmetric stretch and natural orbital configuration entropy.
+    * $\text{H}_4$ rectangular scan and non-adiabatic Berry phase loops.
+    * $\text{BeH}_2$ conical intersection entropic regularization profiles.
+  * Released under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
 ---
 
-## Citation & Preprints
+## Scientific Publications & Preprints
 
-If you utilize Point Reyes Sound datasets, kinetic solvers, or benchmark curves in your academic or industrial research, please cite:
+If you utilize Point Reyes Sound kinetic solvers, Wigner distributions, or benchmark datasets in academic or industrial research, please cite:
 
 ```bibtex
 @article{chakraborty2026qbescf,
@@ -76,7 +98,8 @@ If you utilize Point Reyes Sound datasets, kinetic solvers, or benchmark curves 
 
 <div align="center">
 
-**Point Reyes Sound, Inc.** • Point Reyes Station, CA & Berkeley, CA  
-Inquiries & Research Collaboration: [contact@pointreyessound.com](mailto:contact@pointreyessound.com)
+**Point Reyes Sound, Inc.**  
+Point Reyes Station, CA &amp; Berkeley, CA  
+Inquiries, Enterprise Pilots &amp; Research Partnerships: [directors@pointreyessound.com](mailto:directors@pointreyessound.com) • [pointreyessound.com](https://pointreyessound.com)
 
 </div>
